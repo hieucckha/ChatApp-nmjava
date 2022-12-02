@@ -35,12 +35,10 @@ public class LoginController {
     }
 
     private void onSignupBtnClick(Stage stage) {
-        System.out.println("Signup");
         stage.setScene(SceneController.staticGetScene("Signup"));
         stage.show();
     }
     private void onForgotPwBtnClick(Stage stage) {
-        System.out.println("Forgot");
         stage.setScene(SceneController.staticGetScene("ForgotPw"));
         stage.show();
     }

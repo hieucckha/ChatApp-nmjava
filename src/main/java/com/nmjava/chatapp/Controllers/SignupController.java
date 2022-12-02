@@ -28,13 +28,11 @@ public class SignupController {
     }
 
     private void onSignupBtnClick(Stage stage) {
-        System.out.println("Signup");
         stage.setScene(SceneController.staticGetScene("Login"));
         stage.show();
     }
 
     private void onLoginBtnClick(Stage stage) {
-        System.out.println("Login");
         stage.setScene(SceneController.staticGetScene("Login"));
         stage.show();
     }
