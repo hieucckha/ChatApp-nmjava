@@ -1,4 +1,4 @@
-package com.chatapp.model;
+package com.nmjava.chatapp.Models;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
