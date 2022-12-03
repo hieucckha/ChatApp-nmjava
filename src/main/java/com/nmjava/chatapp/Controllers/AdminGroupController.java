@@ -1,6 +1,6 @@
-package com.chatapp.controller;
+package com.nmjava.chatapp.Controllers;
 
-import com.chatapp.model.modelGroupID;
+import com.nmjava.chatapp.Models.modelGroupID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class admin_group implements Initializable{
+public class AdminGroupController implements Initializable{
 
     @FXML
     private TableColumn<modelGroupID, Integer> tableGroupID;
