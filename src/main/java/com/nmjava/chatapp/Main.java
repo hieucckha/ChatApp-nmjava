@@ -13,13 +13,14 @@ public class Main extends Application {
         sc.addScene("AdminHome", "/com/nmjava/chatapp/views/AdminHome.fxml");
         sc.addScene("AdminGroup", "/com/nmjava/chatapp/views/AdminGroup.fxml");
         sc.addScene("AdminLogin", "/com/nmjava/chatapp/views/AdminLogin.fxml");
+        sc.addScene("AdminList", "/com/nmjava/chatapp/views/AdminList.fxml");
     }
     @Override
     public void start(Stage primaryStage) {
         registerScene();
 
         primaryStage.setTitle("Hello!");
-        primaryStage.setScene(SceneController.staticGetScene("AdminLogin"));
+        primaryStage.setScene(SceneController.staticGetScene("AdminList"));
         primaryStage.setWidth(800);
         primaryStage.setHeight(400);
         primaryStage.show();
