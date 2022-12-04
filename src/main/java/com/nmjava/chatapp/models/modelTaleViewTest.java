@@ -1,6 +1,5 @@
-package com.nmjava.chatapp.Models;
+package com.nmjava.chatapp.models;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class modelTaleViewTest {

@@ -1,4 +1,4 @@
-package com.nmjava.chatapp.Controllers;
+package com.nmjava.chatapp.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,12 +6,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import com.nmjava.chatapp.Utils.SceneController;
+import com.nmjava.chatapp.utils.SceneController;
 import javafx.stage.Stage;
 
 public class LoginController {
-
-    public TextField fdPassword;
+    @FXML
+    private TextField fdPassword;
     public TextField fdEmail;
     public Button btnLogin;
     public Button btnForgotPw;

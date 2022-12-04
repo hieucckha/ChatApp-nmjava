@@ -1,6 +1,6 @@
-package com.chatapp.controller;
+package com.nmjava.chatapp.controllers;
 
-import com.chatapp.model.modelTaleViewTest;
+import com.nmjava.chatapp.models.modelTaleViewTest;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class admin implements Initializable {
+public class AdminHomeController implements Initializable {
 
     @FXML
     private VBox addUser;
@@ -58,6 +58,7 @@ public class admin implements Initializable {
     private TableColumn<modelTaleViewTest,String> emailTable;
 
 
+
     private BooleanProperty stateAdd= new SimpleBooleanProperty();
     @FXML
     private BooleanProperty stateFilter= new SimpleBooleanProperty();
@@ -88,6 +89,7 @@ public class admin implements Initializable {
         stateFilter.set(true);
         System.out.println("true");
     }
+
 
     @Override
     public  void initialize(URL arg0, ResourceBundle arg1)
