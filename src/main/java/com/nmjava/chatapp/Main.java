@@ -11,7 +11,8 @@ public class Main extends Application {
         sc.addScene("Signup", "/com/nmjava/chatapp/views/Signup.fxml");
         sc.addScene("ForgotPw", "/com/nmjava/chatapp/views/ForgotPw.fxml");
         sc.addScene("AdminHome", "/com/nmjava/chatapp/views/AdminHome.fxml");
-        sc.addScene("Users", "/com/nmjava/chatapp/views/Chatuser.fxml");
+        sc.addScene("ChatGroup", "/com/nmjava/chatapp/views/ChatGroup.fxml");
+        sc.addScene("ChatUsers", "/com/nmjava/chatapp/views/Chatuser.fxml");
         sc.addScene("Test", "/com/nmjava/chatapp/views/Test.fxml");
     }
     @Override
@@ -19,7 +20,7 @@ public class Main extends Application {
         registerScene();
 
         primaryStage.setTitle("Hello!");
-        primaryStage.setScene(SceneController.staticGetScene("Users"));
+        primaryStage.setScene(SceneController.staticGetScene("ChatUsers"));
         primaryStage.setWidth(1200);
         primaryStage.setHeight(800);
         primaryStage.show();
