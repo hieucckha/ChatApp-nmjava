@@ -97,9 +97,10 @@
                         </VBox>
                         <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                             <columns>
-                                <TableColumn fx:id="tableGroupID" prefWidth="97.0" text="Group ID" />
-                                <TableColumn fx:id="tableGroupName" prefWidth="261.0" text="Group Name" />
-                                <TableColumn fx:id="tableUserName" prefWidth="384.0" text="User Name" />
+                                <TableColumn fx:id="tableGroupID" prefWidth="65.0" text="Group ID" />
+                                <TableColumn fx:id="tableGroupName" prefWidth="243.0" text="Group Name" />
+                                <TableColumn fx:id="tableUserName" prefWidth="264.0" text="User Name" />
+                                <TableColumn fx:id="tableRole" maxWidth="200.0" prefWidth="170.0" sortable="false" text="Role" />
                             </columns>
                         </TableView>
                     </children>

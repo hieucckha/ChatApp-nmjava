@@ -7,10 +7,13 @@ public class modelGroupID {
     private String GroupName;
     private String GroupUserName;
 
-    public modelGroupID(int GroupID, String GroupName, String GroupUserName) {
+    private String GroupRole;
+
+    public modelGroupID(int GroupID, String GroupName, String GroupUserName, String GroupRole) {
         this.GroupID = GroupID;
         this.GroupName = GroupName;
         this.GroupUserName = GroupUserName;
+        this.GroupRole = GroupRole;
     }
 
     public int getGroupID() {
@@ -35,5 +38,13 @@ public class modelGroupID {
 
     public void setGroupUserName(String groupUserName) {
         GroupUserName = groupUserName;
+    }
+
+    public String getGroupRole() {
+        return GroupRole;
+    }
+
+    public void setGroupRole(String groupRole) {
+        GroupRole = groupRole;
     }
 }
