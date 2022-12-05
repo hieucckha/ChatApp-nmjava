@@ -58,24 +58,24 @@ public class AdminHomeController implements Initializable {
     @FXML
     private StackPane stackPane;
     @FXML
-    private TableView<com.nmjava.chatapp.Models.modelTaleViewTest> tableView;
+    private TableView<com.nmjava.chatapp.models.modelTaleViewTest> tableView;
     @FXML
-    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> userNameTable;
-    @FXML
-
-    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> nameTable;
+    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> userNameTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> addressTable;
+    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> nameTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> dobTable;
+    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> addressTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> sexTable;
+    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> dobTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> emailTable;
+    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> sexTable;
+    @FXML
+
+    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> emailTable;
 
 
     @FXML
@@ -168,8 +168,8 @@ public class AdminHomeController implements Initializable {
 
     }
 
-    ObservableList <com.nmjava.chatapp.Models.modelTaleViewTest> observableList= FXCollections.observableArrayList(
-            new com.nmjava.chatapp.Models.modelTaleViewTest("nguyenhau2","hau","123fsadf","25/06","male","@123"),
+    ObservableList <com.nmjava.chatapp.models.modelTaleViewTest> observableList= FXCollections.observableArrayList(
+            new com.nmjava.chatapp.models.modelTaleViewTest("nguyenhau2","hau","123fsadf","25/06","male","@123"),
             new modelTaleViewTest("nguyenhau23","hau3","123fsa3df","25/306","male","@1323")
 
 

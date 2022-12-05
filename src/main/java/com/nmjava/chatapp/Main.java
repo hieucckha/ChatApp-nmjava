@@ -1,6 +1,6 @@
 package com.nmjava.chatapp;
 
-import com.nmjava.chatapp.Utils.SceneController;
+import com.nmjava.chatapp.utils.SceneController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,9 +10,11 @@ public class Main extends Application {
         sc.addScene("Login", "/com/nmjava/chatapp/views/Login.fxml");
         sc.addScene("Signup", "/com/nmjava/chatapp/views/Signup.fxml");
         sc.addScene("ForgotPw", "/com/nmjava/chatapp/views/ForgotPw.fxml");
+
         sc.addScene("AdminHome", "/com/nmjava/chatapp/views/AdminHome.fxml");
         sc.addScene("AdminGroup", "/com/nmjava/chatapp/views/AdminGroup.fxml");
         sc.addScene("AdminLogin", "/com/nmjava/chatapp/views/AdminLogin.fxml");
+
         sc.addScene("UserHome", "/com/nmjava/chatapp/views/UserHome.fxml");
         sc.addScene("UserFriendOnline", "/com/nmjava/chatapp/views/UserFriendOnline.fxml");
 
