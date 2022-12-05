@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UserTitleChat extends HBox implements Initializable {
+public class GroupTitleChat extends HBox implements Initializable {
     private static final int IS_ONLINE = -1;
     private Avatar avatar;
     @FXML
@@ -21,14 +21,14 @@ public class UserTitleChat extends HBox implements Initializable {
     @FXML
     private Label userNameLb;
     @FXML
-    private Label onlineStatusLb;
+    private Label memberCountsLb;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-    public UserTitleChat(double height, String userName, int lastOnlineHour) {
+    public GroupTitleChat(double height, String userName, int memberCounts) {
         loadFXML();
         this.setHeight(height);
 
@@ -40,10 +40,10 @@ public class UserTitleChat extends HBox implements Initializable {
         this.userNameLb.setPadding(new Insets(0, 0, 5, 0));
         this.infoContainer.getChildren().add(this.userNameLb);
 
-        this.onlineStatusLb = new Label();
-        setLastOnlineHour(lastOnlineHour);
-        this.onlineStatusLb.setPadding(new Insets(5, 0, 0, 0));
-        this.infoContainer.getChildren().add(this.onlineStatusLb);
+        this.memberCountsLb = new Label();
+        setMemberCount(memberCounts);
+        this.memberCountsLb.setPadding(new Insets(5, 0, 0, 0));
+        this.infoContainer.getChildren().add(this.memberCountsLb);
     }
 
     private void loadFXML() {
@@ -70,9 +70,8 @@ public class UserTitleChat extends HBox implements Initializable {
         this.userNameLb.setText(userName);
     }
 
-    public void setLastOnlineHour(int lastOnlineHour) {
-        String status = lastOnlineHour == IS_ONLINE ? "Online" : (lastOnlineHour + " hours ago");
-        this.onlineStatusLb.setText(status);
+    public void setMemberCount(int memberCounts) {
+        this.memberCountsLb.setText(memberCounts + " users");
     }
 
     public void setAvatarImage(String path) {

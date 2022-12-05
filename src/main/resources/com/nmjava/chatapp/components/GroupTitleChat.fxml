@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root fx:id="root" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+         minHeight="-Infinity" minWidth="-Infinity" stylesheets="@GroupTitleChat.css" type="HBox"
+         xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox fx:id="infoContainer" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308"
+              maxWidth="1.7976931348623157E308" stylesheets="@UserTitleChat.css" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets left="10.0"/>
+            </HBox.margin>
+        </VBox>
+    </children>
+</fx:root>
