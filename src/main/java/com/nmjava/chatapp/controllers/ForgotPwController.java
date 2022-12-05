@@ -1,6 +1,6 @@
-package com.nmjava.chatapp.Controllers;
+package com.nmjava.chatapp.controllers;
 
-import com.nmjava.chatapp.Utils.SceneController;
+import com.nmjava.chatapp.utils.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -25,13 +25,11 @@ public class ForgotPwController {
     }
 
     private void onResetPwBtnClick(Stage stage) {
-        System.out.println("Reset Password");
         stage.setScene(SceneController.staticGetScene("Login"));
         stage.show();
     }
 
     private void onCancelBtnClick(Stage stage) {
-        System.out.println("Signup");
         stage.setScene(SceneController.staticGetScene("Login"));
         stage.show();
     }

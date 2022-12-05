@@ -1,6 +1,6 @@
-package com.nmjava.chatapp.Controllers;
+package com.nmjava.chatapp.controllers;
 
-import com.nmjava.chatapp.Utils.SceneController;
+import com.nmjava.chatapp.utils.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -28,13 +28,11 @@ public class SignupController {
     }
 
     private void onSignupBtnClick(Stage stage) {
-        System.out.println("Signup");
         stage.setScene(SceneController.staticGetScene("Login"));
         stage.show();
     }
 
     private void onLoginBtnClick(Stage stage) {
-        System.out.println("Login");
         stage.setScene(SceneController.staticGetScene("Login"));
         stage.show();
     }

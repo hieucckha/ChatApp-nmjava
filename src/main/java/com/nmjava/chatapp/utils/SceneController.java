@@ -1,10 +1,11 @@
-package com.nmjava.chatapp.Utils;
+package com.nmjava.chatapp.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 
 public final class SceneController {
@@ -12,11 +13,11 @@ public final class SceneController {
 
     public void addScene(String name, String path) {
         try {
-            System.out.println(getClass());
-            Parent root = FXMLLoader.load(getClass().getResource(path));
+            URL url = getClass().getResource(path);
+            Parent root = FXMLLoader.load(url);
             map.put(name, new Scene(root));
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

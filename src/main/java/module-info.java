@@ -4,10 +4,21 @@ module com.nmjava.chatapp {
 
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.nmjava.chatapp to javafx.fxml;
+    requires org.kordamp.ikonli.core;
+    requires org.kordamp.ikonli.javafx;
+
     exports com.nmjava.chatapp;
-    exports com.nmjava.chatapp.Controllers;
-    opens com.nmjava.chatapp.Controllers to javafx.fxml;
-    exports com.nmjava.chatapp.Utils;
-    opens com.nmjava.chatapp.Utils to javafx.fxml;
+    opens com.nmjava.chatapp to javafx.fxml;
+
+    exports com.nmjava.chatapp.components;
+    opens com.nmjava.chatapp.components to javafx.fxml;
+
+    exports com.nmjava.chatapp.controllers;
+    opens com.nmjava.chatapp.controllers to javafx.fxml;
+
+    exports com.nmjava.chatapp.models;
+    opens com.nmjava.chatapp.models to javafx.fxml;
+
+    exports com.nmjava.chatapp.utils;
+    opens com.nmjava.chatapp.utils to javafx.fxml;
 }
