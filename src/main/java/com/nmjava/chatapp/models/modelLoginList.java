@@ -1,4 +1,4 @@
-package com.nmjava.chatapp.Models;
+package com.nmjava.chatapp.models;
 
 import java.util.Timer;
 import java.util.Vector;

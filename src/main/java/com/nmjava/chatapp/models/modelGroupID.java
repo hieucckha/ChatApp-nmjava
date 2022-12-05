@@ -1,4 +1,4 @@
-package com.nmjava.chatapp.Models;
+package com.nmjava.chatapp.models;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
