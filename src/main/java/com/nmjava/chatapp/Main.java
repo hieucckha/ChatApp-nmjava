@@ -27,7 +27,7 @@ public class Main extends Application {
         registerScene();
 
         primaryStage.setTitle("Hello!");
-        primaryStage.setScene(SceneController.staticGetScene("UserFriendOnline"));
+        primaryStage.setScene(SceneController.staticGetScene("UserHome"));
         primaryStage.setWidth(1200);
         primaryStage.setHeight(800);
         primaryStage.show();

@@ -105,7 +105,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="textAreaLoginTimes" prefHeight="330.0" prefWidth="190.0" />
+                              <TextArea fx:id="textAreaLoginTimes" prefHeight="330.0" prefWidth="190.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </right>
