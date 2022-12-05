@@ -25,25 +25,20 @@ public class UserTitleChat extends HBox implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
-    public UserTitleChat(double height, String userName, int lastOnlineHour) {
+    public UserTitleChat(String userName, int lastOnlineHour) {
         loadFXML();
-        this.setHeight(height);
 
         avatar = new Avatar(50, 50);
         this.getChildren().add(0, avatar);
 
-        this.userNameLb = new Label();
         setUserName(userName);
+        this.userNameLb.setWrapText(true);
         this.userNameLb.setPadding(new Insets(0, 0, 5, 0));
-        this.infoContainer.getChildren().add(this.userNameLb);
 
-        this.onlineStatusLb = new Label();
         setLastOnlineHour(lastOnlineHour);
         this.onlineStatusLb.setPadding(new Insets(5, 0, 0, 0));
-        this.infoContainer.getChildren().add(this.onlineStatusLb);
     }
 
     private void loadFXML() {
@@ -56,11 +51,6 @@ public class UserTitleChat extends HBox implements Initializable {
         try {
             loader.load();
 
-            this.prefHeightProperty().bind(this.heightProperty());
-            this.prefWidthProperty().bind(this.widthProperty());
-
-            this.infoContainer.prefHeightProperty().bind(this.heightProperty());
-            this.infoContainer.prefWidthProperty().bind(this.widthProperty());
         } catch (IOException ioEx) {
             throw new RuntimeException(ioEx);
         }

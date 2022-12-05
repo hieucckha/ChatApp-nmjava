@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/ForgotPw.css" xmlns="http://javafx.com/javafx/19"
+      prefHeight="400.0" prefWidth="600.0" stylesheets="@css/ForgotPw.css" xmlns="http://javafx.com/javafx/19"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nmjava.chatapp.controllers.ForgotPwController">
     <VBox alignment="CENTER" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
         <Label maxHeight="1000.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" prefHeight="100.0"

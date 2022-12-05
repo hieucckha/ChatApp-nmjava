@@ -1,12 +1,13 @@
 package com.nmjava.chatapp.components;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,7 +15,10 @@ import java.util.ResourceBundle;
 
 public class ContactMessageCard extends HBox implements Initializable {
     private static final int IS_ONLINE = -1;
-    Avatar avatar;
+
+    @FXML
+    private VBox infoContainer;
+    private Avatar avatar;
     @FXML
     private Label userNameLb;
     @FXML
@@ -22,10 +26,11 @@ public class ContactMessageCard extends HBox implements Initializable {
     @FXML
     private Label lastMessageLb;
 
-    public ContactMessageCard(double width, String userName, int lastOnlineHour, String lastMessage) {
+    public ContactMessageCard(String userName, int lastOnlineHour, String lastMessage) {
         loadFXML();
 
-        this.setWidth(width);
+        this.setWidth(300);
+        this.setHeight(100);
 
         this.avatar = new Avatar(50, 50);
         this.getChildren().add(0, avatar);
@@ -41,12 +46,11 @@ public class ContactMessageCard extends HBox implements Initializable {
         FXMLLoader loader = new FXMLLoader(url);
         loader.setRoot(this);
         loader.setController(this);
-
         try {
             loader.load();
 
-            this.prefHeightProperty().bind(this.heightProperty());
-            this.prefWidthProperty().bind(this.widthProperty());
+            this.infoContainer.prefWidthProperty().bind(this.maxWidthProperty());
+            this.infoContainer.prefHeightProperty().bind(this.maxHeightProperty());
         } catch (IOException ioEx) {
             throw new RuntimeException(ioEx);
         }

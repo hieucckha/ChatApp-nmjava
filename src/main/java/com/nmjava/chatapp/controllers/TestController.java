@@ -1,31 +1,35 @@
-package com.nmjava.chatapp.Controllers;
+package com.nmjava.chatapp.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.LightBase;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
-public class TestController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class TestController implements Initializable {
     @FXML
-    private Circle myCircle;
-    private double x;
-    private double y;
+    private VBox root;
+    @FXML
+    private Button btn;
+    @FXML
+    private Label lb;
 
-    public void up(ActionEvent e){
-        System.out.println("up");
-        myCircle.setCenterY(y-=1);
-    }
-    public void down(ActionEvent e){
-        System.out.println("down");
-        myCircle.setCenterY(y+=1);
-    }
-    public void left(ActionEvent e){
-        myCircle.setCenterX(x-=1);
-        System.out.println("left");
-    }
-    public void right(ActionEvent e){
-        myCircle.setCenterX(x+=1);
-        System.out.println("right");
+    public TestController() {
+
     }
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        btn.setOnAction(e -> {
+            System.out.println(root.getWidth());
+            System.out.println(root.getHeight());
+            lb.setText("Somethign ajsdl;fkj;alskdfjlkasdjfl;kasdjf;lkasdjfkl;asdjfdl;kasj");
+        });
+    }
 }

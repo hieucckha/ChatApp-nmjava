@@ -1,6 +1,6 @@
-package com.nmjava.chatapp.Models;
+package com.nmjava.chatapp.models;
 
-public class contact {
+public class ContactModel {
     private String ImageSrc;
     private String Name;
     private String time;
