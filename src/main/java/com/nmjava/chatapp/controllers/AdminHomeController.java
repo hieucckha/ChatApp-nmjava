@@ -8,19 +8,29 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import  javafx.scene.control.Button;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import com.nmjava.chatapp.utils.SceneController;
 public class AdminHomeController implements Initializable {
 
+    @FXML
+    private  Button listUserBtn;
+    @FXML
+    private  Button listLoginBtn;
+    @FXML
+    private  Button listGroupBtn;
     @FXML
     private VBox addUser;
     @FXML
@@ -31,62 +41,109 @@ public class AdminHomeController implements Initializable {
     private  Button addBtn;
     @FXML
     private BorderPane borderPanelSub;
-//    @FXML
-//
-//    private  Button filterBtn;
-//    @FXML
-//
-//    private Button cancelFilterBtn;
     @FXML
-    private TableView<modelTaleViewTest> tableView;
+    private BorderPane borderPanelSub1;
     @FXML
-    private TableColumn<modelTaleViewTest,String> userNameTable;
+    private TextField userNameTextField;
     @FXML
-
-    private TableColumn<modelTaleViewTest,String> nameTable;
+    private TextField nameTextField;
     @FXML
-
-    private TableColumn<modelTaleViewTest,String> addressTable;
+    private TextField addressTextField;
     @FXML
-
-    private TableColumn<modelTaleViewTest,String> dobTable;
+    private TextField dobTextField;
     @FXML
-
-    private TableColumn<modelTaleViewTest,String> sexTable;
+    private TextField sexTextField;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private TableView<com.nmjava.chatapp.Models.modelTaleViewTest> tableView;
+    @FXML
+    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> userNameTable;
     @FXML
 
-    private TableColumn<modelTaleViewTest,String> emailTable;
-
-
-
-    private BooleanProperty stateAdd= new SimpleBooleanProperty();
+    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> nameTable;
     @FXML
-    private BooleanProperty stateFilter= new SimpleBooleanProperty();
+
+    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> addressTable;
+    @FXML
+
+    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> dobTable;
+    @FXML
+
+    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> sexTable;
+    @FXML
+
+    private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> emailTable;
+
+
+    @FXML
+    protected  void handleBtn ( ActionEvent actionEvent)
+    {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        if (actionEvent.getSource() == listUserBtn ){
+            listUserClick(stage);
+        } else if (actionEvent.getSource() == listGroupBtn) {
+            listGroupClick(stage);
+        }
+        else if (actionEvent.getSource()==listLoginBtn)
+        {
+            listLoginClick(stage);
+        }
+    }
+
+    private void listUserClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminHome"));
+        stage.show();
+    }
+
+
+    private void listGroupClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminGroup"));
+        stage.show();
+    }
+
+    private void listLoginClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminLogin"));
+        stage.show();
+    }
+
+
 
     @FXML
     public  void cancelAddButtonOnAction(ActionEvent event)
     {
-        stateAdd.set(false);
+//        stateAdd.set(false);
+//        stackPane.setAlignment(addUser, Pos.BOTTOM_LEFT);
+        tableView.toFront();
 
+        addUser.setVisible(false);
         System.out.println("false");
 
     }
     public void addButtonOnAction(ActionEvent event)
     {
-
-        stateAdd.set(true);
+        borderPanelSub.toFront();
+        addUser.setVisible(true);
+//        stateAdd.set(true);
         System.out.println("true");
     }
 
     public  void cancelFilterButtonOnAction(ActionEvent event)
     {
-        stateFilter.set(false);
+        tableView.toFront();
+        filterUser.setVisible(false);
+
         System.out.println("false");
 
     }
     public void filterButtonOnAction(ActionEvent event)
     {
-        stateFilter.set(true);
+        borderPanelSub1.toFront();
+        filterUser.setVisible(true);
+//        stateFilter.set(true);
         System.out.println("true");
     }
 
@@ -95,8 +152,9 @@ public class AdminHomeController implements Initializable {
     public  void initialize(URL arg0, ResourceBundle arg1)
     {
         System.out.println("true");
-        addUser.visibleProperty().bind(stateAdd);
-        filterUser.visibleProperty().bind(stateFilter);
+//        addUser.visibleProperty().bind(stateAdd);
+//        filterUser.visibleProperty().bind(stateFilter);
+        filterUser.setVisible(false);
 
         userNameTable.setCellValueFactory(new PropertyValueFactory<>("UserName"));
         nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -105,13 +163,16 @@ public class AdminHomeController implements Initializable {
         sexTable.setCellValueFactory(new PropertyValueFactory<>("sex"));
         emailTable.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+        tableView.toFront();
         tableView.setItems(observableList);
 
     }
 
-    ObservableList <modelTaleViewTest> observableList= FXCollections.observableArrayList(
-            new modelTaleViewTest("nguyenhau2","hau","123fsadf","25/06","male","@123"),
+    ObservableList <com.nmjava.chatapp.Models.modelTaleViewTest> observableList= FXCollections.observableArrayList(
+            new com.nmjava.chatapp.Models.modelTaleViewTest("nguyenhau2","hau","123fsadf","25/06","male","@123"),
             new modelTaleViewTest("nguyenhau23","hau3","123fsa3df","25/306","male","@1323")
+
+
     );
 
 
