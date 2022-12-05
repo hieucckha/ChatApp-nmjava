@@ -157,7 +157,7 @@
                             <children>
                                 <VBox maxHeight="-Infinity" prefHeight="354.0" prefWidth="99.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="72.0" styleClass="btnUser">
+                                        <Button fx:id="listUserBtn" mnemonicParsing="false" onAction="#handleBtn" prefHeight="42.0" prefWidth="72.0" styleClass="btnUser">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
@@ -165,13 +165,13 @@
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                             <graphic>
-                                                <FontIcon iconLiteral="ti-agenda" iconSize="20" styleClass="btnuser" />
+                                                <FontIcon iconLiteral="ti-agenda" iconSize="20" styleClass="btnuser" text="" />
                                             </graphic>
                                             <tooltip>
                                                 <Tooltip text="List user" />
                                             </tooltip>
                                         </Button>
-                                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="72.0">
+                                        <Button fx:id="listGroupBtn" mnemonicParsing="false" onAction="#handleBtn" prefHeight="42.0" prefWidth="72.0">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
@@ -179,13 +179,13 @@
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                             <graphic>
-                                                <FontIcon iconLiteral="mdal-group" iconSize="20" wrappingWidth="13.60003662109375" />
+                                                <FontIcon iconLiteral="mdal-group" iconSize="20" text="" wrappingWidth="13.60003662109375" />
                                             </graphic>
                                             <tooltip>
                                                 <Tooltip text="List group" />
                                             </tooltip>
                                         </Button>
-                                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="72.0">
+                                        <Button fx:id="listLoginBtn" mnemonicParsing="false" onAction="#handleBtn" prefHeight="42.0" prefWidth="72.0">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>

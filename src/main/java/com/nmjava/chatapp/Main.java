@@ -19,7 +19,7 @@ public class Main extends Application {
         registerScene();
 
         primaryStage.setTitle("Hello!");
-        primaryStage.setScene(SceneController.staticGetScene("AdminGroup"));
+        primaryStage.setScene(SceneController.staticGetScene("AdminHome"));
         primaryStage.setWidth(800);
         primaryStage.setHeight(400);
         primaryStage.show();

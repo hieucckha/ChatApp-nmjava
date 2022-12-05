@@ -1,10 +1,14 @@
 package com.nmjava.chatapp.Controllers;
 
 import com.nmjava.chatapp.Models.modelGroupID;
+import com.nmjava.chatapp.Utils.SceneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -12,8 +16,15 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 public class AdminGroupController implements Initializable{
+    @FXML
+    private Button listUserBtn;
+    @FXML
+    private  Button listLoginBtn;
+    @FXML
+    private  Button listGroupBtn;
     @FXML
     private TableColumn<modelGroupID, Integer> tableGroupID;
     @FXML
@@ -46,5 +57,36 @@ public class AdminGroupController implements Initializable{
             new modelGroupID(7, "Pro vip","Vinh","User"),
             new modelGroupID(1, "Zac","Quân","User")
     );
+    @FXML
+    protected  void handleBtn ( ActionEvent actionEvent)
+    {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        if (actionEvent.getSource() == listUserBtn ){
+            listUserClick(stage);
+        } else if (actionEvent.getSource() == listGroupBtn) {
+            listGroupClick(stage);
+        }
+        else if (actionEvent.getSource()==listLoginBtn)
+        {
+            listLoginClick(stage);
+        }
+    }
+
+    private void listUserClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminHome"));
+        stage.show();
+    }
+
+
+    private void listGroupClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminGroup"));
+        stage.show();
+    }
+
+    private void listLoginClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminLogin"));
+        stage.show();
+    }
 }
 

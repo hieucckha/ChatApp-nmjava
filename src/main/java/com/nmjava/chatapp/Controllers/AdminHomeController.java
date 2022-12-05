@@ -2,6 +2,7 @@
 package com.nmjava.chatapp.Controllers;
 import com.nmjava.chatapp.Models.modelTaleViewTest;
 
+import com.nmjava.chatapp.Utils.SceneController;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -9,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import  javafx.scene.control.Button;
 
 import javafx.scene.control.TableColumn;
@@ -18,12 +20,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import com.nmjava.chatapp.Utils.SceneController;
 public class AdminHomeController implements Initializable {
 
+    @FXML
+    private  Button listUserBtn;
+    @FXML
+    private  Button listLoginBtn;
+    @FXML
+    private  Button listGroupBtn;
     @FXML
     private VBox addUser;
     @FXML
@@ -71,10 +80,39 @@ public class AdminHomeController implements Initializable {
     private TableColumn<com.nmjava.chatapp.Models.modelTaleViewTest,String> emailTable;
 
 
-
-    private BooleanProperty stateAdd= new SimpleBooleanProperty();
     @FXML
-    private BooleanProperty stateFilter= new SimpleBooleanProperty();
+    protected  void handleBtn ( ActionEvent actionEvent)
+    {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        if (actionEvent.getSource() == listUserBtn ){
+            listUserClick(stage);
+        } else if (actionEvent.getSource() == listGroupBtn) {
+            listGroupClick(stage);
+        }
+        else if (actionEvent.getSource()==listLoginBtn)
+        {
+            listLoginClick(stage);
+        }
+    }
+
+    private void listUserClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminHome"));
+        stage.show();
+    }
+
+
+    private void listGroupClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminGroup"));
+        stage.show();
+    }
+
+    private void listLoginClick(Stage stage) {
+        stage.setScene(SceneController.staticGetScene("AdminLogin"));
+        stage.show();
+    }
+
+
 
     @FXML
     public  void cancelAddButtonOnAction(ActionEvent event)
@@ -91,7 +129,7 @@ public class AdminHomeController implements Initializable {
     {
         borderPanelSub.toFront();
         addUser.setVisible(true);
-        stateAdd.set(true);
+//        stateAdd.set(true);
         System.out.println("true");
     }
 
@@ -107,7 +145,7 @@ public class AdminHomeController implements Initializable {
     {
         borderPanelSub1.toFront();
         filterUser.setVisible(true);
-        stateFilter.set(true);
+//        stateFilter.set(true);
         System.out.println("true");
     }
 
