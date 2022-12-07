@@ -3,6 +3,7 @@ package com.nmjava.chatapp.controllers;
 import com.nmjava.chatapp.components.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -15,62 +16,65 @@ import java.util.ResourceBundle;
 public class UserHomeController implements Initializable {
     @FXML
     public GridPane utilsContainer;
+
     @FXML
     public HBox titleChatContainer;
 
     @FXML
     public GridPane listInfoContainer;
     @FXML
+    private Button contactBtn;
+    @FXML
+    private Button friendOnlineBtn;
+    @FXML
+    private Button friendBtn;
+    @FXML
+    private ScrollPane spContainer;
+    @FXML
     public GridPane chatContainer;
-    @FXML
-    private ScrollPane chatListSP;
-    @FXML
-    private VBox chatList;
-    @FXML
-    private Label nameContacting;
-    @FXML
-    private Label statusContacting;
+
+    private UserTitleChat utc;
 
     public UserHomeController() {
-
+        this.utc = new UserTitleChat("", 0);
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle agr1) {
-        UserTitleChat utc = new UserTitleChat("Something is the long long long long long long long long long long text", 10);
-        this.titleChatContainer.getChildren().add(utc);
+        this.titleChatContainer.getChildren().add(this.utc);
 
-        chatListSP.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        chatListSP.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spContainer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spContainer.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
-        chatList.getChildren().add(new ContactMessageCard("Nguyen hieu", 10, "Day la tin nhan cuoi cung cua ban"));
+        this.spContainer.setContent(createContactMessageList());
+
+        contactBtn.setOnMouseClicked(e -> {
+            System.out.println("contactBtn is clicks");
+            this.spContainer.setContent(createContactMessageList());
+        });
+        friendOnlineBtn.setOnMouseClicked(e -> {
+            System.out.println("friendOnlineBtn is clicks");
+            this.spContainer.setContent(createFriendOnlineList());
+        });
+    }
+
+    private VBox createContactMessageList() {
+        VBox contactMessageList = new ContactMessageList();
+
+        for (int i = 0; i < 20; ++i) {
+            contactMessageList.getChildren().add(new ContactMessageCard("Nguyen Hieu", 10, "Day la tin nhan cuoi cung"));
+        }
+
+        return contactMessageList;
+    }
+
+    private VBox createFriendOnlineList() {
+        VBox friendOnlineList = new FriendOnlineList();
+
+        for (int i = 0; i < 20; ++i) {
+            friendOnlineList.getChildren().add(new FriendOnlineCard("Nguyen Hieu"));
+        }
+
+        return friendOnlineList;
     }
 }

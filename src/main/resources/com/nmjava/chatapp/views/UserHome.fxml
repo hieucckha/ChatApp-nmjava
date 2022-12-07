@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nmjava.chatapp.controllers.UserHomeController">
+<GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1300.0" stylesheets="@css/UserHome.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nmjava.chatapp.controllers.UserHomeController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="471.0" />
@@ -58,18 +59,35 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <VBox prefHeight="200.0" prefWidth="100.0">
+                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label prefHeight="92.0" prefWidth="99.0" style="-fx-background-color: #d4f1d6;" text="Danh sách contact" />
-                        <Label prefHeight="92.0" prefWidth="99.0" text="Danh sách bạn bè" />
-                        <Label prefHeight="92.0" prefWidth="99.0" text="Bạn bè online" />
+                  <Button fx:id="contactBtn" mnemonicParsing="false" styleClass="btnDefault">
+                     <graphic>
+                        <FontIcon iconLiteral="mdi2c-contacts-outline" iconSize="70" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Danh sách contact" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="friendOnlineBtn" mnemonicParsing="false" styleClass="btnDefault">
+                     <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-check-outline" iconSize="70" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Danh sách đang online" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="friendBtn" mnemonicParsing="false" styleClass="btnDefault">
+                     <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-box-outline" iconSize="70" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Danh sách bạn bè" />
+                     </tooltip>
+                  </Button>
                     </children>
                 </VBox>
-                <ScrollPane fx:id="chatListSP" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-               <content>
-                          <VBox fx:id="chatList" style="-fx-background-color: white;" />
-               </content>
-                </ScrollPane>
+                <ScrollPane fx:id="spContainer" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
             </children>
         </GridPane>
         <GridPane fx:id="chatContainer" GridPane.columnIndex="1" GridPane.rowIndex="1">
