@@ -1,7 +1,11 @@
 package com.nmjava.chatapp;
 
+import com.nmjava.chatapp.DAO.userDAO;
+import com.nmjava.chatapp.connection.getConnection;
+import com.nmjava.chatapp.models.User;
 import com.nmjava.chatapp.utils.SceneController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -25,15 +29,24 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         registerScene();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                userDAO userDAO = new userDAO();
+                User user =new User();
+                System.out.println(user.getUpdate_at());
+            }
+        });
 
         primaryStage.setTitle("Hello!");
-        primaryStage.setScene(SceneController.staticGetScene("UserHome"));
+        primaryStage.setScene(SceneController.staticGetScene("AdminHome"));
         primaryStage.setWidth(1200);
         primaryStage.setHeight(800);
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+
         launch();
     }
 }

@@ -1,19 +1,15 @@
 package com.nmjava.chatapp.controllers;
 
-import com.nmjava.chatapp.models.modelTaleViewTest;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import com.nmjava.chatapp.DAO.userDAO;
+import com.nmjava.chatapp.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import  javafx.scene.control.Button;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -21,24 +17,29 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+import java.util.Date;
 import com.nmjava.chatapp.utils.SceneController;
 public class AdminHomeController implements Initializable {
 
     @FXML
-    private  Button listUserBtn;
+    private Button listUserBtn;
     @FXML
-    private  Button listLoginBtn;
+    private Button listLoginBtn;
     @FXML
-    private  Button listGroupBtn;
+    private Button listGroupBtn;
     @FXML
     private VBox addUser;
     @FXML
-    private  VBox filterUser;
+    private VBox filterUser;
     @FXML
-    private  Button cancelAddBtn;
+    private Button cancelAddBtn;
     @FXML
-    private  Button addBtn;
+    private Button addBtn;
     @FXML
     private BorderPane borderPanelSub;
     @FXML
@@ -58,38 +59,35 @@ public class AdminHomeController implements Initializable {
     @FXML
     private StackPane stackPane;
     @FXML
-    private TableView<com.nmjava.chatapp.models.modelTaleViewTest> tableView;
+    private TableView<User> tableView;
     @FXML
-    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> userNameTable;
-    @FXML
-
-    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> nameTable;
+    private TableColumn<User, String> userNameTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> addressTable;
+    private TableColumn<User, String> nameTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> dobTable;
+    private TableColumn<User, String> addressTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> sexTable;
+    private TableColumn<User, String> dobTable;
     @FXML
 
-    private TableColumn<com.nmjava.chatapp.models.modelTaleViewTest,String> emailTable;
+    private TableColumn<User, String> sexTable;
+    @FXML
+
+    private TableColumn<User, String> emailTable;
 
 
     @FXML
-    protected  void handleBtn ( ActionEvent actionEvent)
-    {
+    protected void handleBtn(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        if (actionEvent.getSource() == listUserBtn ){
+        if (actionEvent.getSource() == listUserBtn) {
             listUserClick(stage);
         } else if (actionEvent.getSource() == listGroupBtn) {
             listGroupClick(stage);
-        }
-        else if (actionEvent.getSource()==listLoginBtn)
-        {
+        } else if (actionEvent.getSource() == listLoginBtn) {
             listLoginClick(stage);
         }
     }
@@ -111,69 +109,97 @@ public class AdminHomeController implements Initializable {
     }
 
 
-
     @FXML
-    public  void cancelAddButtonOnAction(ActionEvent event)
-    {
-//        stateAdd.set(false);
-//        stackPane.setAlignment(addUser, Pos.BOTTOM_LEFT);
+    public void cancelAddButtonOnAction(ActionEvent event) {
+
         tableView.toFront();
 
         addUser.setVisible(false);
         System.out.println("false");
 
     }
-    public void addButtonOnAction(ActionEvent event)
-    {
+
+    public void addButtonOnAction(ActionEvent event) {
         borderPanelSub.toFront();
         addUser.setVisible(true);
 //        stateAdd.set(true);
         System.out.println("true");
     }
 
-    public  void cancelFilterButtonOnAction(ActionEvent event)
-    {
+    public void cancelFilterButtonOnAction(ActionEvent event) {
         tableView.toFront();
         filterUser.setVisible(false);
 
         System.out.println("false");
 
     }
-    public void filterButtonOnAction(ActionEvent event)
-    {
+
+    public void filterButtonOnAction(ActionEvent event) {
         borderPanelSub1.toFront();
         filterUser.setVisible(true);
 //        stateFilter.set(true);
         System.out.println("true");
+
+    }
+    public void AddDataOnAction(ActionEvent e) throws SQLException, ParseException {
+        userDAO UserDao=new userDAO();
+        User user =new User();
+        if(userNameTextField.getText().isBlank()&& nameTextField.getText().isBlank()&& dobTextField.getText().isBlank()&&
+        sexTextField.getText().isBlank()&& addressTextField.getText().isBlank()&& emailTextField.getText().isBlank())
+
+        {
+            Alert fail= new Alert(Alert.AlertType.INFORMATION);
+            fail.setHeaderText("failure");
+            fail.setContentText("you haven't typed something");
+            fail.showAndWait();
+        }
+        else {
+                user.setUser_id(new userDAO().MaxUserId());
+                user.setUsername(userNameTextField.getText());
+                user.setName( nameTextField.getText());
+                user.setDob(new SimpleDateFormat("dd/mm/yyyy").parse((dobTextField.getText())));
+                user.setGender(sexTextField.getText());
+                user.setAddress(addressTextField.getText());
+                user.setCreat_at(LocalDateTime.now());
+                user.setUpdate_at(LocalDateTime.now());
+                user.setEmail(emailTextField.getText());
+
+
+                UserDao.insertUser(user);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Success");
+                alert.setContentText("Account succesfully created!");
+                alert.showAndWait();
+        }
+
+        tableView.getItems().clear();
+        tableView.setItems(FXCollections.observableArrayList(new userDAO().getUsers()));
+
     }
 
 
     @Override
-    public  void initialize(URL arg0, ResourceBundle arg1)
-    {
+    public void initialize(URL arg0, ResourceBundle arg1) {
         System.out.println("true");
-//        addUser.visibleProperty().bind(stateAdd);
-//        filterUser.visibleProperty().bind(stateFilter);
-        filterUser.setVisible(false);
 
-        userNameTable.setCellValueFactory(new PropertyValueFactory<>("UserName"));
+        filterUser.setVisible(false);
+        userNameTable.setCellValueFactory(new PropertyValueFactory<>("username"));
         nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
         addressTable.setCellValueFactory(new PropertyValueFactory<>("address"));
         dobTable.setCellValueFactory(new PropertyValueFactory<>("dob"));
-        sexTable.setCellValueFactory(new PropertyValueFactory<>("sex"));
+        sexTable.setCellValueFactory(new PropertyValueFactory<>("gender"));
         emailTable.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         tableView.toFront();
+//       tableView.setItems(observableList);
         tableView.setItems(observableList);
+
 
     }
 
-    ObservableList <com.nmjava.chatapp.models.modelTaleViewTest> observableList= FXCollections.observableArrayList(
-            new com.nmjava.chatapp.models.modelTaleViewTest("nguyenhau2","hau","123fsadf","25/06","male","@123"),
-            new modelTaleViewTest("nguyenhau23","hau3","123fsa3df","25/306","male","@1323")
 
-
-    );
+    ObservableList<User> observableList = FXCollections.observableArrayList(new userDAO().getUsers());
 
 
 }

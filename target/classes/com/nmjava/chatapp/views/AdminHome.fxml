@@ -19,9 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="@css/AdminHome.css" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nmjava.chatapp.controllers.AdminHomeController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="@css/AdminHome.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nmjava.chatapp.controllers.AdminHomeController">
     <children>
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -67,9 +65,9 @@
                     <children>
                         <StackPane fx:id="stackPanel" GridPane.columnIndex="1">
                             <children>
-                                <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
+                                <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
                                     <columns>
-                                        <TableColumn fx:id="userNameTable" prefWidth="75.0" sortable="false" text="User Name" />
+                                        <TableColumn fx:id="userNameTable" editable="false" prefWidth="75.0" sortable="false" text="User Name" />
                                         <TableColumn fx:id="nameTable" prefWidth="75.0" text="Họ tên" />
                                         <TableColumn fx:id="addressTable" prefWidth="75.0" sortable="false" text="Địa chỉ" />
                                         <TableColumn fx:id="dobTable" prefWidth="75.0" text="Ngày sinh" />
@@ -122,7 +120,7 @@
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                     <children>
                                                         <Button fx:id="cancelAddBtn" mnemonicParsing="false" onAction="#cancelAddButtonOnAction" prefHeight="52.0" prefWidth="115.0" text="Cancel" />
-                                                        <Button fx:id="addData" mnemonicParsing="false" prefHeight="52.0" prefWidth="115.0" text="ADD" />
+                                                        <Button fx:id="addData" mnemonicParsing="false" onAction="#AddDataOnAction" prefHeight="52.0" prefWidth="115.0" text="ADD" />
                                                     </children>
                                                 </HBox>
                                             </children>
@@ -138,7 +136,7 @@
                                                         <Font size="19.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="filterUserName" prefHeight="36.0" prefWidth="179.0" promptText="UserName">
+                                                <TextField fx:id="filterUserName" prefHeight="33.0" prefWidth="270.0" promptText="UserName">
                                                     <VBox.margin>
                                                         <Insets bottom="30.0" />
                                                     </VBox.margin>

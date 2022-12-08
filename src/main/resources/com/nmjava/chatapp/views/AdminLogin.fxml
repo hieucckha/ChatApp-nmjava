@@ -98,19 +98,19 @@
                         </VBox>
                   <BorderPane prefHeight="355.0" prefWidth="801.0" GridPane.columnIndex="1">
                      <right>
-                        <VBox prefHeight="355.0" prefWidth="190.0" style="-fx-background-color: #ddd5d5;" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="354.0" prefWidth="236.0" style="-fx-background-color: #ddd5d5;" BorderPane.alignment="CENTER">
                            <children>
                               <Label alignment="CENTER" prefHeight="10.0" prefWidth="190.0" text="List login">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="textAreaLoginTimes" prefHeight="330.0" prefWidth="190.0" VBox.vgrow="ALWAYS" />
+                              <TextArea fx:id="textAreaLoginTimes" disable="true" prefHeight="330.0" prefWidth="198.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </right>
                      <center>
-                        <TableView fx:id="tableView" onMouseClicked="#onClickCollumn" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tableView" onMouseClicked="#onClickCollumn" prefHeight="354.0" prefWidth="502.0" BorderPane.alignment="CENTER">
                           <columns>
                             <TableColumn fx:id="tableLoginUserName" editable="false" prefWidth="75.0" sortable="false" text="User name" />
                             <TableColumn fx:id="tableLoginName" editable="false" prefWidth="75.0" sortable="false" text="Name" />

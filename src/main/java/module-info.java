@@ -6,6 +6,7 @@ module com.nmjava.chatapp {
 
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
+    requires java.sql;
 
     exports com.nmjava.chatapp;
     opens com.nmjava.chatapp to javafx.fxml;
