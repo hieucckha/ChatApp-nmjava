@@ -2,11 +2,14 @@ module com.nmjava.chatapp {
     requires javafx.controls;
     requires javafx.fxml;
 
+    requires jbcrypt;
+    requires java.sql;
+    requires org.postgresql.jdbc;
+
     requires org.kordamp.bootstrapfx.core;
 
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
-    requires java.sql;
 
     exports com.nmjava.chatapp;
     opens com.nmjava.chatapp to javafx.fxml;

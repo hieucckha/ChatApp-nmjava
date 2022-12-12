@@ -1,6 +1,6 @@
 package com.nmjava.chatapp.controllers;
 
-import com.nmjava.chatapp.DAO.userDAO;
+import com.nmjava.chatapp.daos.UserDao;
 import com.nmjava.chatapp.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +22,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
-import java.util.Date;
+
 import com.nmjava.chatapp.utils.SceneController;
+
 public class AdminHomeController implements Initializable {
 
     @FXML
@@ -141,40 +142,38 @@ public class AdminHomeController implements Initializable {
         System.out.println("true");
 
     }
+
     public void AddDataOnAction(ActionEvent e) throws SQLException, ParseException {
-        userDAO UserDao=new userDAO();
-        User user =new User();
-        if(userNameTextField.getText().isBlank()&& nameTextField.getText().isBlank()&& dobTextField.getText().isBlank()&&
-        sexTextField.getText().isBlank()&& addressTextField.getText().isBlank()&& emailTextField.getText().isBlank())
-
-        {
-            Alert fail= new Alert(Alert.AlertType.INFORMATION);
-            fail.setHeaderText("failure");
-            fail.setContentText("you haven't typed something");
-            fail.showAndWait();
-        }
-        else {
-                user.setUser_id(new userDAO().MaxUserId());
-                user.setUsername(userNameTextField.getText());
-                user.setName( nameTextField.getText());
-                user.setDob(new SimpleDateFormat("dd/mm/yyyy").parse((dobTextField.getText())));
-                user.setGender(sexTextField.getText());
-                user.setAddress(addressTextField.getText());
-                user.setCreat_at(LocalDateTime.now());
-                user.setUpdate_at(LocalDateTime.now());
-                user.setEmail(emailTextField.getText());
-
-
-                UserDao.insertUser(user);
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Success");
-                alert.setContentText("Account succesfully created!");
-                alert.showAndWait();
-        }
-
-        tableView.getItems().clear();
-        tableView.setItems(FXCollections.observableArrayList(new userDAO().getUsers()));
+        UserDao UserDao = new UserDao();
+        User user = new User();
+//        if (userNameTextField.getText().isBlank() && nameTextField.getText().isBlank() && dobTextField.getText().isBlank() &&
+//                sexTextField.getText().isBlank() && addressTextField.getText().isBlank() && emailTextField.getText().isBlank()) {
+//            Alert fail = new Alert(Alert.AlertType.INFORMATION);
+//            fail.setHeaderText("failure");
+//            fail.setContentText("you haven't typed something");
+//            fail.showAndWait();
+//        } else {
+//            user.setUserID(new UserDao().MaxUserId());
+//            user.setUsername(userNameTextField.getText());
+//            user.setFullName(nameTextField.getText());
+//            user.setDateOfBirth(new SimpleDateFormat("dd/mm/yyyy").parse((dobTextField.getText())));
+//            user.setGender(sexTextField.getText());
+//            user.setAddress(addressTextField.getText());
+//            user.setCreat_at(LocalDateTime.now());
+//            user.setUpdate_at(LocalDateTime.now());
+//            user.setEmail(emailTextField.getText());
+//
+//
+//            UserDao.insertUser(user);
+//
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setHeaderText("Success");
+//            alert.setContentText("Account succesfully created!");
+//            alert.showAndWait();
+//        }
+//
+//        tableView.getItems().clear();
+//        tableView.setItems(FXCollections.observableArrayList(new UserDao().getUsers()));
 
     }
 
@@ -193,13 +192,11 @@ public class AdminHomeController implements Initializable {
 
         tableView.toFront();
 //       tableView.setItems(observableList);
-        tableView.setItems(observableList);
+//        tableView.setItems(observableList);
 
 
     }
 
 
-    ObservableList<User> observableList = FXCollections.observableArrayList(new userDAO().getUsers());
-
-
+//    ObservableList<User> observableList = FXCollections.observableArrayList(new UserDao().getUsers());
 }

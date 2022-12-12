@@ -1,56 +1,40 @@
 package com.nmjava.chatapp.models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.UUID;
 
 public class User {
-    private String user_id;
+    private UUID userID;
     private String username;
-    private String email;
     private String password;
+    private String fullName;
     private String address;
-    private Date dob;
-    private String name;
-    private boolean is_active;
-    private boolean is_blocked;
-    private LocalDateTime create_at;
-    private LocalDateTime update_at;
-    private boolean is_admin;
-    private String gender;
+    private LocalDate dateOfBirth;
+    private Boolean gender;
+    private String email;
+    private Boolean isActivated;
+    private LocalDateTime createAt;
 
-
-
-    public  User()
-    {
-        user_id="1";
-        username="";
-        name="";
-        email="";
-        address="";
-        password="1234";
-        dob=new Date();
-        is_active=true;
-        is_admin=false;
-        is_blocked=false;
-        create_at=LocalDateTime.now();
-        update_at=LocalDateTime.now();
-        gender="female";
+    public User() {
 
     }
-    public String getGender() {
-        return gender;
+
+    public User(String username, String fullName, String address, LocalDate dateOfBirth, Boolean gender, String email) {
+        setUsername(username);
+        setFullName(fullName);
+        setAddress(address);
+        setDateOfBirth(dateOfBirth);
+        setGender(gender);
+        setEmail(email);
     }
 
-    public void setGender(String sex) {
-        this.gender = sex;
+    public UUID getUserID() {
+        return userID;
     }
 
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserID(UUID userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {
@@ -61,20 +45,20 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getAddress() {
@@ -85,59 +69,43 @@ public class User {
         this.address = address;
     }
 
-    public Date getDob() {
-        return dob;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getName() {
-        return name;
+    public Boolean getGender() {
+        return gender;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGender(Boolean gender) {
+        this.gender = gender;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public String getEmail() {
+        return email;
     }
 
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public boolean isIs_blocked() {
-        return is_blocked;
+    public Boolean getActivated() {
+        return isActivated;
     }
 
-    public void setIs_blocked(boolean is_blocked) {
-        this.is_blocked = is_blocked;
+    public void setActivated(Boolean activated) {
+        isActivated = activated;
     }
 
-    public LocalDateTime getCreate_at() {
-        return create_at;
+    public LocalDateTime getCreateAt() {
+        return createAt;
     }
 
-    public void setCreat_at(LocalDateTime create_at) {
-        this.create_at = create_at;
-    }
-
-    public LocalDateTime getUpdate_at() {
-        return update_at;
-    }
-
-    public void setUpdate_at(LocalDateTime update_at) {
-        this.update_at = update_at;
-    }
-
-    public boolean isIs_admin() {
-        return is_admin;
-    }
-
-    public void setIs_admin(boolean is_admin) {
-        this.is_admin = is_admin;
+    public void setCreateAt(LocalDateTime createAt) {
+        this.createAt = createAt;
     }
 }
