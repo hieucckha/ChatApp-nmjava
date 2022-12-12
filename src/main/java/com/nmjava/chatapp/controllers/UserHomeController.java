@@ -31,12 +31,16 @@ public class UserHomeController implements Initializable {
     @FXML
     private ScrollPane spContainer;
     @FXML
+    private ScrollPane conservationContainer;
+    @FXML
     public GridPane chatContainer;
-
+    @FXML
+    public VBox containerChat;
     private UserTitleChat utc;
 
     public UserHomeController() {
         this.utc = new UserTitleChat("", 0);
+        this.utc.setAvatarImage(String.valueOf(getClass().getResource("/com/nmjava/chatapp/assects/images/avatar2.png")));
     }
 
     @Override
@@ -56,15 +60,29 @@ public class UserHomeController implements Initializable {
             System.out.println("friendOnlineBtn is clicks");
             this.spContainer.setContent(createFriendOnlineList());
         });
+        this.conservationContainer.setContent(createConservationList());
+
+//        this.CreateChatList();
     }
 
     private VBox createContactMessageList() {
         VBox contactMessageList = new ContactMessageList();
 
         for (int i = 0; i < 20; ++i) {
-            contactMessageList.getChildren().add(new ContactMessageCard("Nguyen Hieu", 10, "Day la tin nhan cuoi cung"));
+            String name = i%2==0? "Nguyen Hieu":"Thong Vo";
+            String ImageSrc = i%2==0? "/com/nmjava/chatapp/assects/images/avatar.png":"/com/nmjava/chatapp/assects/images/avatar2.png";
+            ContactMessageCard newChild = new ContactMessageCard(name, 10, "Day la tin nhan cuoi cung",ImageSrc);
+            newChild.setOnMouseClicked(e -> {
+                System.out.println("Contact message is clicks");
+                int timeOnline = Integer.parseInt(newChild.getLastOnlineLb().getText().split(" ")[0]);
+                this.utc = new UserTitleChat(newChild.getUserNameLb().getText(),timeOnline);
+                Avatar tempAvater = new Avatar(50,50);
+                tempAvater.setImage(newChild.getAvatar().getImage());
+                utc.getChildren().set(0,tempAvater);
+                this.titleChatContainer.getChildren().set(0,utc);
+            });
+            contactMessageList.getChildren().add(newChild);
         }
-
         return contactMessageList;
     }
 
@@ -76,5 +94,16 @@ public class UserHomeController implements Initializable {
         }
 
         return friendOnlineList;
+    }
+    private VBox createConservationList() {
+        VBox Conservationlist = new ConservationList();
+
+        for (int i = 0; i < 10; ++i) {
+            conservationLine newChat = new conservationLine("Hallo may fen",true);
+            Conservationlist.getChildren().add(newChat);
+            conservationLine recieveChat = new conservationLine("lo CC sguydgyhifjndfguyhvinjfubhxkcrtggyfhbb sdfyughbkcrgdfsgygh sdtyugfchybjksdfhvb bmn",false);
+            Conservationlist.getChildren().add(recieveChat);
+        }
+        return Conservationlist;
     }
 }

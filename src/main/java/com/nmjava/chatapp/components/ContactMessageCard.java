@@ -21,6 +21,19 @@ public class ContactMessageCard extends HBox implements Initializable {
     private Avatar avatar;
     @FXML
     private Label userNameLb;
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public Label getUserNameLb() {
+        return userNameLb;
+    }
+
+    public Label getLastOnlineLb() {
+        return lastOnlineLb;
+    }
+
     @FXML
     private Label lastOnlineLb;
     @FXML
@@ -39,7 +52,19 @@ public class ContactMessageCard extends HBox implements Initializable {
         setLastOnlineHour(lastOnlineHour);
         setLastMessage(lastMessage);
     }
+    public ContactMessageCard(String userName, int lastOnlineHour, String lastMessage, String ImgSrc) {
+        loadFXML();
 
+        this.setWidth(300);
+        this.setHeight(100);
+
+        this.avatar = new Avatar(50, 50,ImgSrc);
+        this.getChildren().add(0, avatar);
+
+        setUserName(userName);
+        setLastOnlineHour(lastOnlineHour);
+        setLastMessage(lastMessage);
+    }
     public void loadFXML() {
         URL url = Avatar.class.getResource("ContactMessageCard.fxml");
 

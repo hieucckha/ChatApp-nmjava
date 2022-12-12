@@ -60,6 +60,10 @@ public class UserTitleChat extends HBox implements Initializable {
         this.userNameLb.setText(userName);
     }
 
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
     public void setLastOnlineHour(int lastOnlineHour) {
         String status = lastOnlineHour == IS_ONLINE ? "Online" : (lastOnlineHour + " hours ago");
         this.onlineStatusLb.setText(status);

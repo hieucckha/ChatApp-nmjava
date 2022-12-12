@@ -4,6 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,20 @@ public class Avatar extends AnchorPane implements Initializable {
 
         URL url = getClass().getResource("/com/nmjava/chatapp/assects/images/avatar.png");
         setImage(String.valueOf(url));
+    }
+    public Avatar(double width, double height,String ImgSrc) {
+        loadFXML();
+        setAvatarWidth(width);
+        setAvatarHeight(height);
+
+        URL url = getClass().getResource(ImgSrc);
+        setImage(String.valueOf(url));
+    }
+
+    public Avatar(Label activeSymbol, ImageView image, Node... children) {
+        super(children);
+        this.activeSymbol = activeSymbol;
+        this.image = image;
     }
 
     public void loadFXML() {
@@ -71,7 +86,9 @@ public class Avatar extends AnchorPane implements Initializable {
         this.image.setImage(image);
         circleImage();
     }
-
+    public Image getImage() {
+        return  this.image.getImage();
+    }
     public void setAvatarWidth(double width) {
         this.setWidth(width);
     }
