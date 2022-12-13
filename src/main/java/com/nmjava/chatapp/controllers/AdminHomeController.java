@@ -2,15 +2,20 @@ package com.nmjava.chatapp.controllers;
 
 import com.nmjava.chatapp.daos.UserDao;
 import com.nmjava.chatapp.models.User;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,10 +25,15 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import com.nmjava.chatapp.utils.SceneController;
+import javafx.util.converter.DateStringConverter;
+import javafx.util.converter.DefaultStringConverter;
+import javafx.util.converter.FormatStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class AdminHomeController implements Initializable {
 
@@ -71,13 +81,15 @@ public class AdminHomeController implements Initializable {
     private TableColumn<User, String> addressTable;
     @FXML
 
-    private TableColumn<User, String> dobTable;
+    private TableColumn<User, LocalDate> dobTable;
     @FXML
 
     private TableColumn<User, String> sexTable;
     @FXML
 
     private TableColumn<User, String> emailTable;
+    @FXML
+    private TextField filterUserName;
 
 
     @FXML
@@ -144,36 +156,40 @@ public class AdminHomeController implements Initializable {
     }
 
     public void AddDataOnAction(ActionEvent e) throws SQLException, ParseException {
-        UserDao UserDao = new UserDao();
+        UserDao userDao = new UserDao();
         User user = new User();
-//        if (userNameTextField.getText().isBlank() && nameTextField.getText().isBlank() && dobTextField.getText().isBlank() &&
-//                sexTextField.getText().isBlank() && addressTextField.getText().isBlank() && emailTextField.getText().isBlank()) {
-//            Alert fail = new Alert(Alert.AlertType.INFORMATION);
-//            fail.setHeaderText("failure");
-//            fail.setContentText("you haven't typed something");
-//            fail.showAndWait();
-//        } else {
-//            user.setUserID(new UserDao().MaxUserId());
-//            user.setUsername(userNameTextField.getText());
-//            user.setFullName(nameTextField.getText());
-//            user.setDateOfBirth(new SimpleDateFormat("dd/mm/yyyy").parse((dobTextField.getText())));
-//            user.setGender(sexTextField.getText());
-//            user.setAddress(addressTextField.getText());
-//            user.setCreat_at(LocalDateTime.now());
-//            user.setUpdate_at(LocalDateTime.now());
-//            user.setEmail(emailTextField.getText());
-//
-//
-//            UserDao.insertUser(user);
-//
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setHeaderText("Success");
-//            alert.setContentText("Account succesfully created!");
-//            alert.showAndWait();
-//        }
-//
-//        tableView.getItems().clear();
-//        tableView.setItems(FXCollections.observableArrayList(new UserDao().getUsers()));
+        if (userNameTextField.getText().isBlank() && nameTextField.getText().isBlank() && dobTextField.getText().isBlank() &&
+                sexTextField.getText().isBlank() && addressTextField.getText().isBlank() && emailTextField.getText().isBlank()) {
+
+            Alert fail = new Alert(Alert.AlertType.INFORMATION);
+            fail.setHeaderText("failure");
+            fail.setContentText("you haven't typed something");
+            fail.showAndWait();
+
+        } else {
+
+            user.setUsername(userNameTextField.getText());
+            user.setFullName(nameTextField.getText());
+            user.setDateOfBirth(LocalDate.parse(dobTextField.getText()));
+            user.setPassword("1234");
+            user.setAddress(addressTextField.getText());
+            user.setEmail(emailTextField.getText());
+            user.setActivated(true);
+            user.setCreateAt(LocalDateTime.now());
+            user.setGender(sexTextField.getText());
+
+
+
+            userDao.save(user);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Success");
+            alert.setContentText("Account succesfully created!");
+            alert.showAndWait();
+        }
+
+        tableView.getItems().clear();
+        tableView.setItems(FXCollections.observableArrayList(new UserDao().getInfoAll()));
 
     }
 
@@ -184,19 +200,85 @@ public class AdminHomeController implements Initializable {
 
         filterUser.setVisible(false);
         userNameTable.setCellValueFactory(new PropertyValueFactory<>("username"));
-        nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
+        // save to db when edit in table view
+
+        nameTable.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        nameTable.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameTable.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<User, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<User, String> event) {
+                User user =event.getRowValue();
+                user.setFullName(event.getNewValue());
+                System.out.println(user.getUsername());
+
+                UserDao userDao =new UserDao();
+                userDao.update(user);
+
+            }
+        });
+
         addressTable.setCellValueFactory(new PropertyValueFactory<>("address"));
-        dobTable.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        addressTable.setCellFactory(TextFieldTableCell.forTableColumn());
+        addressTable.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<User, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<User, String> event) {
+                User user =event.getRowValue();
+                user.setAddress(event.getNewValue());
+                UserDao userDao =new UserDao();
+                userDao.update(user);
+
+            }
+        });
+
+        dobTable.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        dobTable.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
+        dobTable.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<User, LocalDate>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<User, LocalDate> event) {
+                User user =event.getRowValue();
+                user.setDateOfBirth(event.getNewValue());
+                UserDao userDao =new UserDao();
+                userDao.update(user);
+
+            }
+        });
+
         sexTable.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        sexTable.setCellFactory(TextFieldTableCell.forTableColumn());
+        sexTable.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<User, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<User, String> event) {
+                User user =event.getRowValue();
+                user.setGender(event.getNewValue());
+                UserDao userDao =new UserDao();
+                userDao.update(user);
+
+            }
+        });
+
         emailTable.setCellValueFactory(new PropertyValueFactory<>("email"));
+        emailTable.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailTable.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<User, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<User, String> event) {
+                User user =event.getRowValue();
+                user.setEmail(event.getNewValue());
+                UserDao userDao =new UserDao();
+                userDao.update(user);
+
+            }
+        });
+        //filtering
+
 
         tableView.toFront();
-//       tableView.setItems(observableList);
+       tableView.setItems(observableList);
+       tableView.setEditable(true);
 //        tableView.setItems(observableList);
 
 
     }
 
 
-//    ObservableList<User> observableList = FXCollections.observableArrayList(new UserDao().getUsers());
+    ObservableList<User> observableList = FXCollections.observableArrayList(new UserDao().getInfoAll());
 }

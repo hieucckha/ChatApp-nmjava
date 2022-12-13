@@ -21,7 +21,7 @@
             </activation>
             <properties>
                 <db.driverClassName>org.postgresql.Driver</db.driverClassName>
-                <db.url>jdbc:postgresql://localhost:5432/Chatapp_nmjava_db</db.url>
+                <db.url>jdbc:postgresql://localhost:5432/chatApp_nmjava_db</db.url>
                 <db.username>root</db.username>
                 <db.password>123456</db.password>
             </properties>
@@ -37,7 +37,7 @@
             </activation>
             <properties>
                 <db.driverClassName>org.postgresql.Driver</db.driverClassName>
-                <db.url>jdbc:postgresql://somethinghere:5432/Chatapp_nmjava_db</db.url>
+                <db.url>jdbc:postgresql://somethinghere:5432/ChatApp_nmjava_db</db.url>
                 <db.username>production</db.username>
                 <db.password>123456</db.password>
             </properties>

@@ -11,7 +11,7 @@ public class User {
     private String fullName;
     private String address;
     private LocalDate dateOfBirth;
-    private Boolean gender;
+    private String gender;
     private String email;
     private Boolean isActivated;
     private LocalDateTime createAt;
@@ -20,7 +20,7 @@ public class User {
 
     }
 
-    public User(String username, String fullName, String address, LocalDate dateOfBirth, Boolean gender, String email) {
+    public User(String username, String fullName, String address, LocalDate dateOfBirth, String gender, String email) {
         setUsername(username);
         setFullName(fullName);
         setAddress(address);
@@ -77,11 +77,11 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

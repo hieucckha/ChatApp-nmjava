@@ -35,7 +35,7 @@ public class UserDao {
                     String fullName = resultSet.getString("full_name");
                     String address = resultSet.getString("address");
                     LocalDate dateOfBirth = resultSet.getDate("date_of_birth").toLocalDate();
-                    Boolean gender = resultSet.getBoolean("gender");
+                    String gender = resultSet.getString("gender");
                     String email = resultSet.getString("email");
 
                     User user = new User(username, fullName, address, dateOfBirth, gender, email);
@@ -68,7 +68,7 @@ public class UserDao {
                 statement.setString(4, nonNullUser.getFullName());
                 statement.setString(5, nonNullUser.getAddress());
                 statement.setDate(6, Date.valueOf(nonNullUser.getDateOfBirth()));
-                statement.setBoolean(7, nonNullUser.getGender());
+                statement.setString(7, nonNullUser.getGender());
                 statement.setString(8, nonNullUser.getEmail());
                 statement.setBoolean(9, nonNullUser.getActivated());
                 statement.setTimestamp(10, Timestamp.valueOf(nonNullUser.getCreateAt()));
@@ -101,8 +101,9 @@ public class UserDao {
                 statement.setString(1, user.getFullName());
                 statement.setString(2, user.getAddress());
                 statement.setDate(3, Date.valueOf(user.getDateOfBirth()));
-                statement.setBoolean(4, user.getGender());
+                statement.setString(4, user.getGender());
                 statement.setString(5, user.getEmail());
+                statement.setString(6,user.getUsername());
 
                 int numberOfDeletedRows = statement.executeUpdate();
             } catch (SQLException sqlEx) {
